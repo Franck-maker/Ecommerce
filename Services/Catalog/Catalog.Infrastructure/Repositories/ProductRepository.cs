@@ -36,7 +36,7 @@ namespace Catalog.Infrastructure.Repositories
             return deletedProduct.IsAcknowledged && deletedProduct.DeletedCount > 0;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<IEnumerable<Product>> GetAllProducts()
         {
             return await _products.Find(p => true).ToListAsync(); 
         }
