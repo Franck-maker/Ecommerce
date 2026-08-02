@@ -42,7 +42,7 @@ namespace Catalog.Application.DTOs
         [Required]
         public string TypeId { get; init; }
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be a positive value.")]
-        public string Price { get; init; }
+        public decimal Price { get; init; }
     }
 
     public record class UpdateProductDto
@@ -60,7 +60,7 @@ namespace Catalog.Application.DTOs
         [Required]
         public string TypeId { get; init; }
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be a positive value.")]
-        public string Price { get; init; }
+        public decimal Price { get; init; }
     }
 
 }

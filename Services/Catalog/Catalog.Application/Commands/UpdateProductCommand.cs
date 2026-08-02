@@ -1,5 +1,4 @@
-﻿using Catalog.Application.Responses;
-using Catalog.Core.Entities;
+﻿using Catalog.Core.Entities;
 using MediatR;
 
 namespace Catalog.Application.Commands
@@ -17,10 +16,7 @@ namespace Catalog.Application.Commands
         public string TypeId { get; init; }
         public decimal Price { get; init; }
 
-        internal object ToEntity(Task<ProductBrand> brand, Task<ProductType> type)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
     
 }
