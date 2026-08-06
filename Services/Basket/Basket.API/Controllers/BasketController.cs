@@ -17,8 +17,8 @@ namespace Basket.API.Controllers
             _mediator = mediator;
         }
 
-        //Get: api/v1/basket/Username
-        [HttpGet("{username}")]
+        //Get: api/v1/basket/{userName}
+        [HttpGet("{userName}")]
         public async Task<ActionResult<ShoppingCartDto>> GetBasket(string userName)
         {
             var query = new GetBasketByUserNameQuery(userName);
