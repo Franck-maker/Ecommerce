@@ -1,7 +1,9 @@
 ﻿using Discount.Application.DTOs;
+using Discount.Application.Extensions;
 using Discount.Application.Mappers;
 using Discount.Application.Queries;
 using Discount.Core.Repositories;
+using Grpc.Core;
 using MediatR;
 
 namespace Discount.Application.Handlers
@@ -19,17 +21,18 @@ namespace Discount.Application.Handlers
             // Validate the input
             if (string.IsNullOrWhiteSpace(request.productName))
             {
-                var validationErrores = new Dictionary<string, string>()
+                var validationErrors = new Dictionary<string, string>()
                 {
                     {"ProductName", "Product name must not be empty." }
                 };
+                throw GrpcErrorHelper.CreateValidationException(validationErrors);
             }
 
             //Fetch from repo
             var coupon = await _discountRepository.GetDiscount(request.productName); 
             if(coupon == null)
             {
-                throw new Exception($"Discount for the Product Name = {request.productName} not found.");
+                throw new RpcException(new Status(StatusCode.Internal, $"Discount not found for product: {request.productName}")); 
             }
             //Mapping
             return coupon.ToDto(); 
