@@ -1,4 +1,5 @@
-﻿using Discount.Application.DTOs;
+﻿using Discount.Application.Commands;
+using Discount.Application.DTOs;
 using Discount.Core.Entities;
 
 namespace Discount.Application.Mappers
@@ -13,5 +14,18 @@ namespace Discount.Application.Mappers
                 coupon.Description,
                 coupon.Amount); 
         }
+
+
+        public static Coupon ToEntity(this CreateDiscountCommand command)
+        {
+            return new Coupon
+            {
+                ProductName = command.ProductName,
+                Description = command.Description,
+                Amount = command.Amount,
+
+            };
+        }
+
     }
 }

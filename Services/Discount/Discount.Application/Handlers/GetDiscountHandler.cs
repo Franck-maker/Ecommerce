@@ -19,7 +19,7 @@ namespace Discount.Application.Handlers
         public async Task<CouponDto> Handle(GetDiscountQuery request, CancellationToken cancellationToken)
         {
             // Validate the input
-            if (string.IsNullOrWhiteSpace(request.productName))
+            if (string.IsNullOrWhiteSpace(request.ProductName))
             {
                 var validationErrors = new Dictionary<string, string>()
                 {
@@ -29,10 +29,10 @@ namespace Discount.Application.Handlers
             }
 
             //Fetch from repo
-            var coupon = await _discountRepository.GetDiscount(request.productName); 
+            var coupon = await _discountRepository.GetDiscount(request.ProductName); 
             if(coupon == null)
             {
-                throw new RpcException(new Status(StatusCode.Internal, $"Discount not found for product: {request.productName}")); 
+                throw new RpcException(new Status(StatusCode.Internal, $"Discount not found for product: {request.ProductName}")); 
             }
             //Mapping
             return coupon.ToDto(); 
